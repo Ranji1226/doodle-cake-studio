@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Doodle Code Studio — playful design, doodles, digital products and creative websites.">
+  <title>Doodle Code Studio — Design + Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f5f2eb;
+      --ink:#11110f;
+      --muted:#6d6a62;
+      --line:#c9c4b9;
+      --accent:#ff5c35;
+      --card:#e9e5db;
+      --white:#fffdf7;
+      --max:1240px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .wrap{max-width:var(--max);margin:auto;padding:0 28px}
+    .mono{font-family:"DM Mono",monospace}
+    .eyebrow{font:12px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    nav{position:fixed;z-index:20;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:18px 28px;mix-blend-mode:multiply}
+    .brand{font-weight:800;letter-spacing:-.05em}
+    .navlinks{display:flex;gap:24px;font-size:13px}
+    .navlinks a:hover{color:var(--accent)}
+    .hero{min-height:100svh;display:flex;align-items:center;padding:120px 0 70px;position:relative;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:50px;align-items:end}
+    h1{font-size:clamp(70px,11vw,165px);line-height:.82;letter-spacing:-.085em;margin:20px 0 30px;font-weight:800}
+    h1 em{font-family:"Playfair Display",serif;font-weight:500;letter-spacing:-.06em}
+    .hero-copy{max-width:420px;font-size:18px;line-height:1.5;color:#4f4c45}
+    .scribble{position:absolute;right:7%;top:23%;font-size:88px;transform:rotate(8deg);font-family:"Playfair Display",serif}
+    .doodle{position:absolute;pointer-events:none}
+    .star{font-size:46px}
+    .arrow{font-size:42px;transform:rotate(18deg)}
+    .cta{display:inline-flex;align-items:center;gap:12px;margin-top:28px;border:1px solid var(--ink);padding:13px 18px;border-radius:999px;font-size:13px}
+    .cta:hover{background:var(--ink);color:var(--bg)}
+    section{padding:120px 0;border-top:1px solid var(--line)}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:baseline;margin-bottom:55px}
+    .section-head h2{font-size:clamp(42px,7vw,86px);line-height:.9;letter-spacing:-.07em;margin:0}
+    .section-note{max-width:310px;color:var(--muted);line-height:1.5;font-size:14px}
+    .work-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px}
+    .project{position:relative;overflow:hidden;background:var(--card);min-height:460px;border-radius:4px}
+    .project:nth-child(2){min-height:650px}
+    .project:nth-child(3){min-height:540px}
+    .project:nth-child(4){min-height:420px}
+    .project-inner{position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+    .project-art{position:absolute;inset:12%;display:grid;place-items:center}
+    .poster{width:62%;aspect-ratio:3/4;background:#171717;color:#f7f1e8;padding:25px;transform:rotate(-5deg);box-shadow:18px 20px 0 rgba(0,0,0,.12)}
+    .poster strong{display:block;font-size:clamp(28px,4vw,54px);line-height:.86;letter-spacing:-.07em}
+    .poster small{display:block;margin-top:35px;font-family:"DM Mono";font-size:10px}
+    .doodle-board{width:80%;height:70%;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;transform:rotate(8deg)}
+    .doodle-board span{font-size:clamp(50px,8vw,110px);font-family:"Playfair Display";font-style:italic}
+    .browser{width:82%;border:1px solid var(--ink);background:var(--white);box-shadow:14px 14px 0 rgba(0,0,0,.08)}
+    .browser-top{height:28px;border-bottom:1px solid var(--ink);display:flex;align-items:center;gap:5px;padding:0 8px}
+    .dot{width:6px;height:6px;border:1px solid var(--ink);border-radius:50%}
+    .browser-body{padding:35px}
+    .browser-body h3{font-size:44px;letter-spacing:-.06em;margin:0}
+    .browser-body p{color:var(--muted)}
+    .notion{width:78%;background:#fff;border:1px solid #222;padding:30px;box-shadow:12px 12px 0 rgba(0,0,0,.1)}
+    .notion h3{margin:0 0 20px;font-size:28px}
+    .notion-row{height:12px;background:#ddd;margin:9px 0;border-radius:20px}
+    .project-meta{position:relative;z-index:2;display:flex;justify-content:space-between;font-size:12px}
+    .project-title{position:relative;z-index:2;font-size:28px;letter-spacing:-.04em}
+    .services{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line)}
+    .service{padding:30px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:70px 1fr;gap:20px}
+    .service:nth-child(odd){padding-right:35px;border-right:1px solid var(--line)}
+    .service:nth-child(even){padding-left:35px}
+    .service-num{font-family:"DM Mono";font-size:12px;color:var(--muted)}
+    .service h3{margin:0 0 10px;font-size:28px;letter-spacing:-.04em}
+    .service p{margin:0;color:var(--muted);max-width:450px;line-height:1.55}
+    .manifesto{font-size:clamp(40px,7vw,95px);line-height:.98;letter-spacing:-.07em;max-width:1000px}
+    .manifesto em{font-family:"Playfair Display";font-weight:500}
+    .shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .product{background:var(--white);padding:16px;border:1px solid var(--line)}
+    .product-visual{aspect-ratio:1/1;background:var(--card);display:grid;place-items:center;overflow:hidden}
+    .product-visual .phone{width:42%;aspect-ratio:9/17;background:#181818;border:7px solid #111;border-radius:20px;color:white;padding:20px;font-size:13px;display:flex;align-items:end}
+    .product-visual .sheet{width:62%;aspect-ratio:4/5;background:white;border:1px solid #222;padding:22px;transform:rotate(5deg)}
+    .product-visual .sheet span{font-size:45px;font-family:"Playfair Display";font-style:italic}
+    .product-info{padding:16px 3px 5px;display:flex;justify-content:space-between;gap:15px}
+    .product-info strong{font-size:15px}
+    .product-info span{font-family:"DM Mono";font-size:11px}
+    .contact{background:var(--ink);color:var(--bg);border-top:0}
+    .contact .eyebrow,.contact .section-note{color:#a8a39a}
+    .contact h2{font-size:clamp(60px,11vw,150px);line-height:.82;letter-spacing:-.085em;margin:0 0 45px}
+    .contact h2 em{font-family:"Playfair Display";font-weight:500}
+    .contact-link{font-family:"DM Mono";font-size:14px;border-bottom:1px solid #777;padding-bottom:5px}
+    footer{background:var(--ink);color:#888;padding:24px 28px;display:flex;justify-content:space-between;font:11px "DM Mono"}
+    @media(max-width:800px){
+      nav{padding:16px 18px}.navlinks{gap:12px}.navlinks a:nth-child(2),.navlinks a:nth-child(4){display:none}
+      .wrap{padding:0 18px}.hero-grid{grid-template-columns:1fr}.scribble{right:6%;top:20%;font-size:55px}
+      h1{font-size:clamp(65px,19vw,110px)}
+      .work-grid{grid-template-columns:1fr}.project,.project:nth-child(2),.project:nth-child(3),.project:nth-child(4){min-height:440px}
+      .services,.shop-grid{grid-template-columns:1fr}.service:nth-child(odd){padding-right:0;border-right:0}.service:nth-child(even){padding-left:0}
+      section{padding:85px 0}.section-head{display:block}.section-note{margin-top:20px}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="brand" href="#">DCS®</a>
+    <div class="navlinks mono">
+      <a href="#work">work</a>
+      <a href="#services">services</a>
+      <a href="#shop">shop</a>
+      <a href="#contact">contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Doodle Code Studio / India / 2026</div>
+          <h1>art<br>meets<br><em>code.</em></h1>
+          <p class="hero-copy">A tiny independent studio making playful visual identities, websites, doodles and digital things for people with good ideas.</p>
+          <a class="cta mono" href="#work">see the work ↘</a>
+        </div>
+        <div></div>
+      </div>
+      <div class="scribble">hi! ✦</div>
+      <div class="doodle star" style="left:7%;bottom:17%">✳</div>
+      <div class="doodle arrow" style="right:15%;bottom:13%">↙</div>
+    </section>
+
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Selected<br>work.</h2>
+          <p class="section-note">A starter portfolio. Replace these concept pieces with your real work as you build it.</p>
+        </div>
+        <div class="work-grid">
+          <article class="project">
+            <div class="project-art"><div class="poster"><strong>MAKE<br>IT<br>LOUD.</strong><small>POSTER STUDY / 001</small></div></div>
+            <div class="project-inner"><div class="project-meta mono"><span>01 / POSTER</span><span>2026</span></div><div class="project-title">A loud little poster.</div></div>
+          </article>
+          <article class="project">
+            <div class="project-art"><div class="doodle-board"><span>: doodle!</span></div></div>
+            <div class="project-inner"><div class="project-meta mono"><span>02 / ILLUSTRATION</span><span>2026</span></div><div class="project-title">Doodles for the internet.</div></div>
+          </article>
+          <article class="project">
+            <div class="project-art"><div class="browser"><div class="browser-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><div class="browser-body"><div class="eyebrow">creative studio</div><h3>hello,<br>internet.</h3><p>Design + code, without the boring bits.</p></div></div></div>
+            <div class="project-inner"><div class="project-meta mono"><span>03 / WEB</span><span>2026</span></div><div class="project-title">A playful landing page.</div></div>
+          </article>
+          <article class="project">
+            <div class="project-art"><div class="notion"><h3>My little dashboard ✦</h3><div class="notion-row" style="width:75%"></div><div class="notion-row" style="width:90%"></div><div class="notion-row" style="width:55%"></div><div class="notion-row" style="width:80%"></div></div></div>
+            <div class="project-inner"><div class="project-meta mono"><span>04 / NOTION</span><span>2026</span></div><div class="project-title">A system that feels human.</div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Things<br>I make.</h2>
+          <p class="section-note">Small studio energy. Thoughtful design. A little weirdness when the brief allows it.</p>
+        </div>
+        <div class="services">
+          <div class="service"><div class="service-num">01</div><div><h3>Visual design</h3><p>Posters, flyers, social graphics, visual identities and campaign pieces that don't look like templates.</p></div></div>
+          <div class="service"><div class="service-num">02</div><div><h3>Web + creative code</h3><p>Portfolio sites, landing pages and tiny interactive experiences with strong typography and personality.</p></div></div>
+          <div class="service"><div class="service-num">03</div><div><h3>Doodles + illustration</h3><p>Custom doodles, icons, wallpapers, stickers and illustrated assets for brands and creators.</p></div></div>
+          <div class="service"><div class="service-num">04</div><div><h3>Digital products</h3><p>Notion templates, wallpaper packs, Canva kits and other useful little things for the internet.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="eyebrow">studio philosophy</div>
+        <p class="manifesto">I like things that are <em>useful</em>, a little strange, and made with enough care that you want to keep them.</p>
+      </div>
+    </section>
+
+    <section id="shop">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Little<br>shop.</h2>
+          <p class="section-note">Digital products are coming. This section can become your passive-income corner.</p>
+        </div>
+        <div class="shop-grid">
+          <div class="product"><div class="product-visual"><div class="phone">your day,<br>but organized ✦</div></div><div class="product-info"><strong>Student Dashboard</strong><span>₹299</span></div></div>
+          <div class="product"><div class="product-visual"><div class="sheet"><span>wallpaper<br>club</span></div></div><div class="product-info"><strong>Doodle Wallpaper Pack</strong><span>₹149</span></div></div>
+          <div class="product"><div class="product-visual"><div class="doodle-board" style="width:65%;height:65%"><span>stickers!</span></div></div><div class="product-info"><strong>Mini Doodle Pack</strong><span>₹199</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="eyebrow">have an idea?</div>
+        <h2>let's make<br>something <em>good.</em></h2>
+        <a class="contact-link" href="mailto:hello@doodlecodestudio.com">hello@doodlecodestudio.com ↗</a>
+      </div>
+    </section>
+  </main>
+  <footer><span>© 2026 Doodle Code Studio</span><span>made with doodles + code</span></footer>
+</body>
+</html>
