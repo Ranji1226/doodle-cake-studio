@@ -8,5 +8,3 @@ Next edits to make:
 3. Change the email address.
 4. Add your Instagram / X / LinkedIn links.
 5. When ready, deploy the folder on Vercel, Netlify, GitHub Pages, or your preferred host.
-
-The design is an original interpretation inspired by the visual/editorial qualities you liked in the Kiira reference, not a copy of its source code or assets.
